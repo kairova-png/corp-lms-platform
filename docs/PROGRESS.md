@@ -37,6 +37,11 @@ sg docker -c 'docker compose -f docker/docker-compose.yml --env-file .env up -d'
 - Дизайн-система: индиго `#4F46E5`, success `#22C55E`, Manrope + Source Sans 3.
 - Сложные интерактивы строим в новом UI через mobile-WS (как офиц. приложение). Для ещё-не-готовых типов — заглушка «скоро», **не** ссылка в Moodle.
 
+## 🎨 Бренд клиента + GitHub + Claude Design (новое)
+- **Бренд KMG PetroChem** извлечён из kmgpetrochem.kz и применён: teal `#1896A7`, accent `#30A6A6`, ink `#18303A`, surface `#EEF3F5`; шрифты **Montserrat + Inter** (кириллица). Фронт (`globals.css`/`layout.tsx`) и Moodle-тема `brandcolor` обновлены. См. `docs/05_brand_kmg.md`.
+- **GitHub:** код запушен в приватный репо **https://github.com/kairova-png/corp-lms-platform** (gh CLI в `~/.local/bin`, аккаунт kairova-png). `.env`/токены в .gitignore — не утекли.
+- **Workflow с Claude Design:** пользователь строит дизайн в claude.ai/design (линкует наш репо как design-system source, бренд в notes), даёт мне **ссылку на проект** → я читаю через **DesignSync** (`list_files`/`get_file` по projectId из URL `/design/p/<id>`) и реализую в коде. (Скилл `/design-sync` пушит репу В Claude Design; чтение проекта — методами DesignSync.)
+
 ## ✅ Решения (подтверждены пользователем)
 1. **Объём ролей в новом UI: только Ученик.** Куратор/админ — в Moodle.
 2. **Логин:** пока собираем экраны на демо-токене; настоящий per-user вход — отдельной фазой.
