@@ -1,0 +1,6 @@
+.git
+.claude-flow
+docs
+tests
+*.log
+.env

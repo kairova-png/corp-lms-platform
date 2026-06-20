@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+/* Дизайн-система Corp LMS (UX/UI Pro «Trust & Authority»). Шрифты с кириллицей (KZ/RU). */
+@theme {
+  /* Бренд KMG PetroChem (извлечено из kmgpetrochem.kz) */
+  --color-brand: #1896a7;        /* KMG teal — HSL 187 72% 38% */
+  --color-brand-dark: #15808f;
+  --color-brand-fg: #ffffff;
+  --color-accent: #30a6a6;       /* KMG accent teal — HSL 180 55% 42% */
+  --color-success: #22c55e;      /* progress green */
+  --color-ink: #18303a;          /* KMG dark navy-teal — sidebar-primary */
+  --color-surface: #eef3f5;      /* KMG light surface — sidebar-accent */
+
+  --font-sans: var(--font-body-src), system-ui, sans-serif;
+  --font-display: var(--font-display-src), system-ui, sans-serif;
+}
+
+:root {
+  --background: #f6f7fb;
+  --foreground: #1f2430;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}

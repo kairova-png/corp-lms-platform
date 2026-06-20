@@ -1,0 +1,38 @@
+{
+  "_comment": "Бандл сторонних плагинов под матрицу ТЗ. path = путь установки в дереве Moodle. Вебинары (5.4) закрываются ядровым BigBlueButton, отчёты (8) — ядровым Report Builder; отдельные плагины для них не нужны.",
+  "moodle_branch": "MOODLE_405_STABLE",
+  "core_covered": {
+    "webinars_5.4": "mod_bigbluebuttonbn (в ядре Moodle)",
+    "reports_8": "core Report Builder (Moodle 4.x, экспорт Excel/PDF)"
+  },
+  "plugins": [
+    {
+      "name": "mod_customcert",
+      "purpose": "Конструктор сертификатов (PDF, уникальный номер, срок действия) — п.4.1/4.2 ТЗ",
+      "path": "mod/customcert",
+      "git": "https://github.com/mdjnelson/moodle-mod_customcert.git",
+      "branch": "MOODLE_404_STABLE"
+    },
+    {
+      "name": "qtype_ordering",
+      "purpose": "Тип вопроса 'ранжирование' — п.4.2 ТЗ",
+      "path": "question/type/ordering",
+      "git": "https://github.com/gbateson/moodle-qtype_ordering.git",
+      "branch": "master"
+    },
+    {
+      "name": "mod_questionnaire",
+      "purpose": "Конструктор опросов (шкала, ранжирование и др.) — п.4.3 ТЗ",
+      "path": "mod/questionnaire",
+      "git": "https://github.com/PoetOS/moodle-mod_questionnaire.git",
+      "branch": "main"
+    },
+    {
+      "name": "auth_saml2",
+      "purpose": "SSO / SAML / интеграция с AD-федерацией — п.11/12.2 ТЗ",
+      "path": "auth/saml2",
+      "git": "https://github.com/catalyst/moodle-auth_saml2.git",
+      "branch": "MOODLE_405_STABLE"
+    }
+  ]
+}
