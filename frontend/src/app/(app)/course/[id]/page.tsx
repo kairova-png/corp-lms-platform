@@ -97,7 +97,12 @@ export default async function CoursePage({ params }: { params: Promise<{ id: str
           {(course?.summary || "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim()}
         </p>
       </div>
-      <CourseView curriculum={curriculum} doneCmids={done} />
+      <CourseView
+        courseId={courseid}
+        summary={(course?.summary || "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim()}
+        curriculum={curriculum}
+        doneCmids={done}
+      />
     </div>
   );
 }

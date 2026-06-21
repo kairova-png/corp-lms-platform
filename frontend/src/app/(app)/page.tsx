@@ -55,7 +55,7 @@ export default async function Dashboard() {
                 Вы пока не записаны на курсы. Загляните в <Link href="/catalog" className="text-brand font-semibold">каталог</Link>.
               </p>
             ) : (
-              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
                 {(inProgress.length ? inProgress : mine).slice(0, 6).map((c) => (
                   <CourseCard key={c.id} course={c} enrolled />
                 ))}

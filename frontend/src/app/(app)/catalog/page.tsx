@@ -23,7 +23,7 @@ export default async function Catalog() {
       {error ? (
         <div className="mt-6 rounded-2xl border border-red-200 bg-red-50 p-5 text-red-700 text-sm break-all">{error}</div>
       ) : (
-        <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
           {all.map((c) => (
             <CourseCard key={c.id} course={c} enrolled={mineIds.has(c.id)} />
           ))}

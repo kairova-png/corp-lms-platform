@@ -7,7 +7,7 @@ function initials(name: string): string {
 export function SiteHeader({ fullname }: { fullname?: string }) {
   return (
     <header className="bg-brand text-brand-fg sticky top-0 z-20 shadow-sm">
-      <div className="mx-auto max-w-6xl px-5 h-16 flex items-center justify-between">
+      <div className="w-full px-6 lg:px-8 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5">
           <span className="grid place-items-center w-9 h-9 rounded-xl bg-white/15 font-display font-bold">
             CL

@@ -31,6 +31,8 @@ sg docker -c 'docker compose -f docker/docker-compose.yml --env-file .env up -d'
    - Общие: `components/CourseCard.tsx`, `CourseView.tsx`, `SiteHeader.tsx`, `ComingSoon.tsx`.
    - Всё проверено end-to-end (реальные данные, без ошибок компиляции).
 6. **Контент уроков + правило «без Moodle»:** текстовые уроки рендерятся во фронте (HTML из `mod_page`); все ссылки «Открыть в Moodle» убраны — тесты/задания/сертификаты дают inline-«Скоро». ADR-001 (стек TS/Next.js) записан в `00_WAYS_OF_WORKING.md`.
+7. **Бренд KMG + UI-библиотека + Claude Design:** бренд kmgpetrochem.kz (teal #1896A7, Montserrat/Inter) применён; UI-библиотека `src/components/ui/` (10 компонентов) + `/styleguide` + `DESIGN_SYSTEM.md`; репо публичный на GitHub (kairova-png/corp-lms-platform). Схема: код = источник правды → синк в Claude Design (уровень 2 = упаковка в бандл, когда компоненты стабильны).
+8. **Полноширинный лейаут + Udemy-курс + фокус-тест:** убран max-width (сетки до 5 колонок); страница курса в стиле Udemy (видео слева, вкладки Описание/Материалы/Тесты под видео, программа справа); тест открывается в **новой вкладке** `/test/[id]/[cmid]` (фокус-режим без сайдбара, `QuizRunner` — UI всех типов вопросов; WS `mod_quiz_*` — следующая фаза).
 
 ## Решения (зафиксированы)
 - A+C → уточнено: **новый дизайн только для УЧЕНИКА** (headless, ничего в Moodle). Авторинг/админка = Moodle. (Подтверждено пользователем: «создание курсов это и есть админка, переписывать не надо».)
