@@ -130,3 +130,42 @@ export const getNotifications = (userid: number): Promise<any[]> =>
   call("message_popup_get_popup_notifications", { useridto: userid })
     .then((r) => r.notifications ?? [])
     .catch(() => []);
+
+// --- Тест (mod_quiz): реальная попытка ---
+export const quizGetId = (courseid: number, cmid: number): Promise<number | undefined> =>
+  call("mod_quiz_get_quizzes_by_courses", { "courseids[0]": courseid }).then((r) => {
+    const list = r.quizzes ?? [];
+    return (list.find((q: any) => q.coursemodule === cmid) ?? list[0])?.id;
+  });
+
+export const quizUnfinished = (quizid: number): Promise<number | null> =>
+  call("mod_quiz_get_user_attempts", { quizid, status: "unfinished" })
+    .then((r) => r.attempts?.[0]?.id ?? null)
+    .catch(() => null);
+
+export const quizStart = (quizid: number): Promise<number> =>
+  call("mod_quiz_start_attempt", { quizid }).then((r) => r.attempt?.id);
+
+export const quizGetData = (attemptid: number, page: number): Promise<any> =>
+  call("mod_quiz_get_attempt_data", { attemptid, page });
+
+export const quizProcess = (
+  attemptid: number,
+  data: { name: string; value: string }[],
+  finish: boolean
+): Promise<any> => {
+  const params: Record<string, string | number> = { attemptid, finishattempt: finish ? 1 : 0 };
+  data.forEach((d, i) => {
+    params[`data[${i}][name]`] = d.name;
+    params[`data[${i}][value]`] = d.value;
+  });
+  return call("mod_quiz_process_attempt", params);
+};
+
+export const quizReview = (attemptid: number): Promise<any> =>
+  call("mod_quiz_get_attempt_review", { attemptid });
+
+export const quizBestGrade = (quizid: number): Promise<number> =>
+  call("mod_quiz_get_user_best_grade", { quizid })
+    .then((r) => Number(r.grade ?? 0))
+    .catch(() => 0);

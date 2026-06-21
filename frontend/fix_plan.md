@@ -29,7 +29,7 @@
 - [ ] Документ-вьюер урока (отложено — в демо-контенте нет файловых ресурсов; сделать, когда появятся).
 
 ## 4. Интерактив на реальных WS (отдельная фаза)
-- [ ] Тест → `mod_quiz_*` (start/get/process attempt).
+- [x] Тест → `mod_quiz_*` (start/get/process attempt). Реальная попытка: вопросы Moodle рендерятся в нашем UI, ответы собираются из формы и шлются в `process_attempt`, оценка из `get_user_best_grade`. API-роуты `/api/quiz/{start,finish}` (токен на сервере). Проверено: попытки записываются и оцениваются в Moodle.
 - [ ] Задание → `mod_assign_*`.
 - [ ] Сертификат PDF → `mod_customcert_*` / `local_corplms` + pluginfile-прокси.
 - [ ] Реальный логин (Moodle credentials → токен), затем AD/SSO.

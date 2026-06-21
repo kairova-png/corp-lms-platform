@@ -17,5 +17,5 @@ export default async function TestPage({ params }: { params: Promise<{ id: strin
   } catch {
     // имя по умолчанию
   }
-  return <QuizRunner quizName={name} />;
+  return <QuizRunner quizName={name} courseId={Number(id)} cmid={Number(cmid)} />;
 }
