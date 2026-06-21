@@ -194,6 +194,8 @@ export function CourseView({
                       <li key={it.cmid}>
                         {it.type === "quiz" ? (
                           <a href={quizHref(it.cmid)} target="_blank" rel="noopener noreferrer" className={`${cls} hover:bg-zinc-50`}>{inner}</a>
+                        ) : it.type === "assign" ? (
+                          <a href={`/assignment/${courseId}/${it.cmid}`} target="_blank" rel="noopener noreferrer" className={`${cls} hover:bg-zinc-50`}>{inner}</a>
                         ) : (
                           <button onClick={() => setActive(it)} className={`${cls} ${isActive ? "bg-surface" : "hover:bg-zinc-50"} cursor-pointer`}>{inner}</button>
                         )}

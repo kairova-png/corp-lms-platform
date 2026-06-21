@@ -112,3 +112,21 @@ export const getUser = (userid: number): Promise<any> =>
   call("core_user_get_users_by_field", { field: "id", "values[0]": userid }).then(
     (r) => (Array.isArray(r) ? r[0] : null)
   );
+
+// Оценки по курсу.
+export const getGrades = (courseid: number, userid: number): Promise<any[]> =>
+  call("gradereport_user_get_grade_items", { courseid, userid })
+    .then((r) => r.usergrades?.[0]?.gradeitems ?? [])
+    .catch(() => []);
+
+// Ближайшие события (календарь).
+export const getCalendarEvents = (): Promise<any[]> =>
+  call("core_calendar_get_action_events_by_timesort", { limitnum: 30 })
+    .then((r) => r.events ?? [])
+    .catch(() => []);
+
+// Уведомления.
+export const getNotifications = (userid: number): Promise<any[]> =>
+  call("message_popup_get_popup_notifications", { useridto: userid })
+    .then((r) => r.notifications ?? [])
+    .catch(() => []);

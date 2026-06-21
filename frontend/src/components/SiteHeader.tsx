@@ -16,14 +16,21 @@ export function SiteHeader({ fullname }: { fullname?: string }) {
             <span className="font-display font-bold text-lg">Corp LMS</span>
           </Link>
         </div>
-        {fullname && (
-          <div className="flex items-center gap-3 text-sm">
-            <span className="hidden sm:block opacity-90">{fullname}</span>
-            <span className="grid place-items-center w-9 h-9 rounded-full bg-white/15 font-semibold">
-              {initials(fullname)}
-            </span>
-          </div>
-        )}
+        <div className="flex items-center gap-2">
+          <Link href="/notifications" aria-label="Уведомления" className="p-2 rounded-lg hover:bg-white/10 transition">
+            <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8">
+              <path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 01-3.4 0" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Link>
+          {fullname && (
+            <div className="flex items-center gap-3 text-sm pl-1">
+              <span className="hidden sm:block opacity-90">{fullname}</span>
+              <span className="grid place-items-center w-9 h-9 rounded-full bg-white/15 font-semibold">
+                {initials(fullname)}
+              </span>
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );

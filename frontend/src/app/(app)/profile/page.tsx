@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getSiteInfo, getUser, getMyCourses } from "@/lib/moodle";
 
 export const dynamic = "force-dynamic";
@@ -52,13 +53,12 @@ export default async function Profile() {
           </div>
           <div className="mt-4 font-display font-semibold text-lg text-ink">{user?.fullname}</div>
           <div className="text-sm text-zinc-500">{user?.email}</div>
-          <button
-            disabled
-            className="mt-5 w-full rounded-xl border border-zinc-200 py-2.5 text-sm font-semibold text-zinc-400 cursor-not-allowed"
-            title="Скоро"
+          <Link
+            href="/profile/edit"
+            className="mt-5 inline-flex w-full justify-center rounded-xl bg-brand py-2.5 text-sm font-semibold text-brand-fg hover:bg-brand-dark transition"
           >
-            Редактировать (скоро)
-          </button>
+            Редактировать
+          </Link>
         </div>
 
         {/* Данные */}
