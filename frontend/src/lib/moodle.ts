@@ -169,3 +169,41 @@ export const quizBestGrade = (quizid: number): Promise<number> =>
   call("mod_quiz_get_user_best_grade", { quizid })
     .then((r) => Number(r.grade ?? 0))
     .catch(() => 0);
+
+// --- Задание (mod_assign): реальная сдача online-текста ---
+export const assignGetId = (courseid: number, cmid: number): Promise<number | undefined> =>
+  call("mod_assign_get_assignments", { "courseids[0]": courseid }).then((r) => {
+    for (const c of r.courses ?? []) {
+      for (const a of c.assignments ?? []) if (a.cmid === cmid) return a.id;
+    }
+    return r.courses?.[0]?.assignments?.[0]?.id;
+  });
+
+export const assignStatus = (assignid: number): Promise<any> =>
+  call("mod_assign_get_submission_status", { assignid });
+
+export const assignSave = (assignid: number, text: string): Promise<any> =>
+  call("mod_assign_save_submission", {
+    assignmentid: assignid,
+    "plugindata[onlinetext_editor][text]": text,
+    "plugindata[onlinetext_editor][format]": 1,
+    "plugindata[onlinetext_editor][itemid]": 0,
+  });
+
+// Нормализованный статус сдачи.
+export async function assignFullStatus(courseid: number, cmid: number) {
+  const assignid = await assignGetId(courseid, cmid);
+  if (!assignid) return { assignid: null, state: "new", text: "", grade: null, feedback: "" };
+  const st = await assignStatus(assignid);
+  const sub = st.lastattempt?.submission;
+  const text =
+    sub?.plugins?.find((p: any) => p.type === "onlinetext")?.editorfields?.[0]?.text ?? "";
+  const fb = st.feedback ?? {};
+  return {
+    assignid,
+    state: sub?.status ?? "new",
+    text,
+    grade: fb.grade?.grade ?? null,
+    feedback: fb.plugins?.find((p: any) => p.type === "comments")?.editorfields?.[0]?.text ?? "",
+  };
+}

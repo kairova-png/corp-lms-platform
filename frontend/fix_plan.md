@@ -30,6 +30,6 @@
 
 ## 4. Интерактив на реальных WS (отдельная фаза)
 - [x] Тест → `mod_quiz_*` (start/get/process attempt). Реальная попытка: вопросы Moodle рендерятся в нашем UI, ответы собираются из формы и шлются в `process_attempt`, оценка из `get_user_best_grade`. API-роуты `/api/quiz/{start,finish}` (токен на сервере). Проверено: попытки записываются и оцениваются в Moodle.
-- [ ] Задание → `mod_assign_*`.
+- [x] Задание → `mod_assign_*`. Реальная сдача online-текста: `assignFullStatus` (статус/текст/оценка) + `/api/assignment/submit` (save_submission). Проверено: сдача записывается в Moodle. Загрузка файлов (draft area) — позже.
 - [ ] Сертификат PDF → `mod_customcert_*` / `local_corplms` + pluginfile-прокси.
 - [ ] Реальный логин (Moodle credentials → токен), затем AD/SSO.

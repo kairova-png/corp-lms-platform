@@ -1,4 +1,4 @@
-import { getCourseContents } from "@/lib/moodle";
+import { getCourseContents, assignFullStatus } from "@/lib/moodle";
 import { AssignmentView } from "@/components/AssignmentView";
 
 export const dynamic = "force-dynamic";
@@ -21,5 +21,13 @@ export default async function AssignmentPage({ params }: { params: Promise<{ id:
   } catch {
     // имя по умолчанию
   }
-  return <AssignmentView name={name} desc={desc} />;
+
+  let status: any = { assignid: null, state: "new", text: "", grade: null, feedback: "" };
+  try {
+    status = await assignFullStatus(Number(id), Number(cmid));
+  } catch {
+    // дефолтный статус
+  }
+
+  return <AssignmentView name={name} desc={desc} courseId={Number(id)} cmid={Number(cmid)} initial={status} />;
 }
